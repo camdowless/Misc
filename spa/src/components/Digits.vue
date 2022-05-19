@@ -4,6 +4,8 @@
       <div class ="w-4 h-4 border" v-for="(n, i) in 625" :key='i' v-bind:id="i" @mouseover="draw(i)" @click="draw(i, click=true)"></div>
     </div>
     <button class="border" @click="printCanvas()">Print Canvas</button>
+    <p></p><br>
+    <button class="border" @click="classifyDigit()">Classify</button>
   </div>
 </template>
 
@@ -23,11 +25,11 @@ export default {
     const c = document.getElementById('canvas');
     c.addEventListener('mousedown', e => {
       isDrawing = true
-      console.log(isDrawing)
+      //console.log(isDrawing)
     })
     c.addEventListener('mouseup', e => {
       isDrawing = false
-      console.log(isDrawing)
+      //console.log(isDrawing)
     })
   },
 
@@ -43,6 +45,10 @@ export default {
     },
     printCanvas(){
       console.log(this.canvasArray)
+    },
+    classifyDigit(){
+      this.$store.dispatch('Digit', [1,2,3,4,5])
+      console.log(this.$store.state.classification)
     }
   }
 }
